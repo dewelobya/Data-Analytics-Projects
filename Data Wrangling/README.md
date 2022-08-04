@@ -1,3 +1,3 @@
-Data Wrangling with Python and Selenium on Mac 
+Data Wrangling
 
 
