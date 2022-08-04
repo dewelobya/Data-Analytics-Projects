@@ -1,6 +1,3 @@
-#basic code
-
-
 from selenium import webdriver
 
 #financial data
@@ -22,3 +19,9 @@ driver.get(website)
 
 com.apple.security.files.downloads.read-write
 
+
+#to execute selenium, use terminal insert python webscraper.py
+
+#to close the browser --->
+
+driver.quit()
