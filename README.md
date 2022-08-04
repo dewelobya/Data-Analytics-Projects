@@ -10,11 +10,10 @@ This repository contains the projects related to Web scraping, Data wrangling, E
 
 
   
-1. My Github recent [posts](https://github.com/pe1l1nl1/pe1l1nl1/tree/main/_posts)
+1. Financial Times[Codes](https://github.com/pe1l1nl1/Data-Analytics-Projects/tree/main/Web%20Scraping)
+1. [Screenshots](https://github.com/pe1l1nl1/Data-Analytics-Projects/wiki)
 
-2. Check out my updated [curriculum vitae](https://www.overleaf.com/read/xfjssmknscmk). 
 
-3. Contact me via [LinkedIn](https://www.linkedin.com/in/peill/).
 
 </details>
 
