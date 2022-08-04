@@ -10,7 +10,7 @@ This repository contains the projects related to Web scraping, Data wrangling, E
 
 
   
-1. Financial Times[Codes](https://github.com/pe1l1nl1/Data-Analytics-Projects/tree/main/Web%20Scraping)
+1. Financial Times [Codes](https://github.com/pe1l1nl1/Data-Analytics-Projects/tree/main/Web%20Scraping)
 1. [Screenshots](https://github.com/pe1l1nl1/Data-Analytics-Projects/wiki)
 
 
