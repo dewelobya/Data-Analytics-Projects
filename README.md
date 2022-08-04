@@ -8,7 +8,7 @@ This repository contains the projects related to Web scraping, Data wrangling, E
 <details id=1>
 <summary><h2>  Web Scraping </h2></summary>
 
-
+Scraping Dynamic Websites
   
 1. Financial Times [Codes](https://github.com/pe1l1nl1/Data-Analytics-Projects/tree/main/Web%20Scraping)
 1. [Screenshots](https://github.com/pe1l1nl1/Data-Analytics-Projects/wiki)
