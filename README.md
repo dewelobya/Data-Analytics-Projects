@@ -1,7 +1,7 @@
 # Data-Analytics-Projects
 
 
-This repository contains the projects related to Web scraping, Data wrangling, Exploratory data analysis, Data visualization, Machine learning. 
+This repository contains the projects related to **Web scraping**, **Data wrangling**, **Exploratory data analysis**, **Data visualization**, **Machine learning**. 
 
 
 
