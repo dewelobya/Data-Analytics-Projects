@@ -14,7 +14,7 @@ Chapter 1
 4. Introduce to central limit theorem (not done, 25.10.2022) 
 5. Analyze a population using data samples
 6. Identify and minimize sources of error
-7. Summarize business data 
+7. Challenge: Summarize business data  (completed)
 
 
 
