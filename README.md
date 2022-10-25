@@ -47,6 +47,11 @@ Scraping Dynamic Websites
 <details id=4>
 <summary><h2>  Machine Learning </h2></summary>
 1. My Github recent [posts](https://github.com/pe1l1nl1/pe1l1nl1/tree/main/_posts)
+  
+  
+  <details id=5>
+<summary><h2>  Learning Excel: Data Analysis </h2></summary>
+
 
 </details>
 
