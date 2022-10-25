@@ -54,4 +54,7 @@ Scraping Dynamic Websites
 
   <details id=6>
 <summary><h2>  Learning Excel: Data Analysis </h2></summary>
+  
+  1. Chapter 1 [posts] (https://github.com/pe1l1nl1/Data-Analytics-Projects/tree/main/Learning%20Excel%20Data%20Analysis/Chapter01)
+  2. Chapter 2 
 </details>
