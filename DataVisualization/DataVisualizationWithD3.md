@@ -38,7 +38,7 @@ D3 allows you to chain several methods together with periods to perform a number
 Use the select method to select the `body` tag in the document. Then append an `h1` tag to it, and add the text "Learning D3" into the `h1` element.
 
 
-**MySolution**
+**My Solution**
 ```JavaScript
 <body>
   <script>
@@ -54,6 +54,46 @@ Use the select method to select the `body` tag in the document. Then append an `
 ## Select a Group of Elements with D3
 
 **The Lesson:**
+
+D3 also has the selectAll() method to select a group of elements. It returns an array of HTML nodes for all the items in the document that match the input string. 
+
+
+**Example:**
+
+Here's an example to select all the anchor tags in a document:
+
+```Javascript
+
+const anchors = d3.selectAll("a");
+
+```
+Like the `select()` method, `selectAll()` supports method chaining, and you can use it with other methods.
+
+**Challenge Instructions:**
+
+Select all of the li tags in the document, and change their text to the string list item by chaining the `.text()` method.
+
+**My Solution:**
+
+```Javascript 
+<body>
+  <ul>
+    <li>Example</li>
+    <li>Example</li>
+    <li>Example</li>
+  </ul>
+  <script>
+    // Add your code below this line
+
+const achors = d3.selectAll("li")
+  .text("list item");
+
+    // Add your code above this line
+  </script>
+</body>
+
+```
+
 
 
 
