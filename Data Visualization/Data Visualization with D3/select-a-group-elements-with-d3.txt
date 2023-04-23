@@ -7,8 +7,7 @@
   <script>
     // Add your code below this line
 
-d3.selectAll("ul")
-  .append("li")
+d3.selectAll("li")
   .text("list item");
 
 
