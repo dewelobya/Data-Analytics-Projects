@@ -2,6 +2,7 @@
 
 ## Add Document Elements with D3
 
+**The Lesson:**
 
 D3 has several methods that let you add and change elements in your document.
 
@@ -35,7 +36,7 @@ D3 allows you to chain several methods together with periods to perform a number
 
 **Challange Instructions:**
 Use the select method to select the `body` tag in the document. Then append an `h1` tag to it, and add the text "Learning D3" into the `h1` element.
-My solution: 
+
 
 **MySolution**
 ```JavaScript
@@ -49,3 +50,10 @@ My solution:
   </script>
 </body>
 ```
+
+## Select a Group of Elements with D3
+
+**The Lesson:**
+
+
+
