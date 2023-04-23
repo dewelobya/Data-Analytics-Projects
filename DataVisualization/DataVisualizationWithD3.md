@@ -12,7 +12,9 @@ The `select()` method selects one element from the document. It takes an argumen
 
 Here's an example:
 
-`const anchor = d3.select("a");`
+```Javascript
+const anchor = d3.select("a");
+```
 
 The above example finds the first anchor tag on the page and saves an HTML node for it in the variable anchor. You can use the selection with other methods. The d3 part of the example is a reference to the D3 object, which is how you access D3 methods.
 
@@ -112,7 +114,6 @@ When `enter()` is combined with the data() method, it looks at the selected elem
 Here is an example that selects a `ul` element and creates a new list item based on the number of entries in the array:
 
 ```Javascript 
-
 <body>
   <ul></ul>
   <script>
@@ -124,7 +125,6 @@ Here is an example that selects a `ul` element and creates a new list item based
       .text("New item");
   </script>
 </body>
-
 ```
 
 
@@ -140,7 +140,7 @@ It may seem confusing to select elements that don't exist yet. This code is tell
 Select the body node, then select all `h2` elements. Have D3 create and append an `h2` tag for each item in the dataset array. The text in the `h2` should say `New Title`. Your code should use the `data()` and `enter()` methods.
 
 **My Solution:**
-
+```Javascript
 <body>
   <script>
     const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
@@ -156,7 +156,7 @@ Select the body node, then select all `h2` elements. Have D3 create and append a
     // Add your code above this line
   </script>
 </body>
-
+```
 
 ## Work with Dynamic Data in D3
 
@@ -167,8 +167,10 @@ The last two challenges cover the basics of displaying data dynamically with D3 
 In the previous challenge, you created a new `h2` element for each item in the `dataset` array, but they all contained the same text, `New Title`. This is because you have not made use of the data that is bound to each of the `h2` elements.
 
 The D3 `text()` method can take a string or a callback function as an argument:
+```Javascript
+selection.text((d) => d)
+```
 
-`selection.text((d) => d)`
 
 In the example above, the parameter d refers to a single entry in the dataset that a selection is bound to.
 
@@ -183,7 +185,21 @@ Change the `text()` method so that each `h2` element displays the corresponding 
 **My Solution:**
 
 ```Javascript 
+  <body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    d3.select("body").selectAll("h2")
+      .data(dataset)
+      .enter()
+      .append("h2")
+      // Add your code below this line
+
       .text((d) => d + " " + "USD");
+
+      // Add your code above this line
+  </script>
+</body>
 
 ```
 
