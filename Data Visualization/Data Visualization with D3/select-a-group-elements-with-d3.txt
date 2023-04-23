@@ -8,8 +8,8 @@
     // Add your code below this line
 
 d3.selectAll("ul")
-  .
-  .text("list item")
+  .append("li")
+  .text("list item");
 
 
     // Add your code above this line
