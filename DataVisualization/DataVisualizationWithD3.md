@@ -1372,7 +1372,269 @@ Label each point on the scatter plot using the `text` elements. The text of the 
 ```
 
 
-## Add Document Elements with D3
+## Create a Linear Scale with D3 
+
+**The Lesson:**
+
+The bar and scatter plot charts both plotted data directly onto the SVG. However, if the height of a bar or one of the data points were larger than the SVG height or width values, it would go outside the SVG area.
+
+In D3, there are scales to help plot data. `scales` are functions that tell the program how to map a set of raw data points onto the pixels of the SVG.
+
+For example, say you have a 100x500-sized SVG and you want to plot Gross Domestic Product (GDP) for a number of countries. The set of numbers would be in the billion or trillion-dollar range. You provide D3 a type of scale to tell it how to place the large GDP values into that 100x500-sized area.
+
+It's unlikely you would plot raw data as-is. Before plotting it, you set the scale for your entire data set, so that the `x` and `y` values fit your SVG width and height.
+
+D3 has several scale types. For a linear scale (usually used with quantitative data), there is the D3 method `scaleLinear()`:
+
+
+**Example:**
+
+```Javascript 
+const scale = d3.scaleLinear()
+
+```
+
+By default, a scale uses the identity relationship. The value of the input is the same as the value of the output. A separate challenge covers how to change this.
+
+**Challenge Instructions:**
+
+Change the `scale` variable to create a linear scale. Then set the `output` variable to the scale called with an input argument of `50`.
+
+**My Solution:**
+
+```Javascript 
+<body>
+  <script>
+    // Add your code below this line
+    
+ const scale = undefined; //deleted this line
+
+
+    const scale = d3.scaleLinear()  // Create the scale here
+    const output = scale(50); // Call scale with an argument here
+
+    // Add your code above this line
+
+    d3.select("body")
+      .append("h2")
+      .text(output);
+
+  </script>
+</body>
+
+```
+
+## Set a Domain and a Range on a Scale
+
+**The Lesson:**
+
+By default, scales use the identity relationship. This means the input value maps to the output value. However, scales can be much more flexible and interesting.
+
+Say a dataset has values ranging from 50 to 480. This is the input information for a scale, also known as the domain.
+
+You want to map those points along the `x` axis on the SVG, between 10 units and 500 units. This is the output information, also known as the range.
+
+The `domain()` and `range()` methods set these values for the scale. Both methods take an array of at least two elements as an argument. Here's an example:
+
+**Example:**
+
+```Javascript 
+
+scale.domain([50, 480]);
+scale.range([10, 500]);
+scale(50)
+scale(480)
+scale(325)
+scale(750)
+d3.scaleLinear()
+
+```
+In order, the following values would be displayed in the console: `10`, `500`, `323.37`, and `807.67`.
+
+Notice that the scale uses the linear relationship between the domain and range values to figure out what the output should be for a given number. The minimum value in the domain (50) maps to the minimum value (10) in the range.
+
+**Challenge Instructions:**
+
+Create a scale and set its domain to `[250, 500]` and range to `[10, 150]`.
+
+**Note:** You can chain the `domain()` and `range()` methods onto the `scale` variable.
+
+**My Solution:**
+
+```Javascript 
+<body>
+  <script>
+    // Add your code below this line
+    const scale = d3.scaleLinear();
+scale.domain([250, 500]);
+scale.range([10, 150]);
+
+
+    // Add your code above this line
+    const output = scale(50);
+    d3.select("body")
+      .append("h2")
+      .text(output);
+  </script>
+</body>
+```
+
+
+## Use the d3.max and d3.min Functions to Find Minimum and Maximum Values in a Dataset
+
+**The Lesson:**
+
+The D3 methods domain() and range() set that information for your scale based on the data. There are a couple methods to make that easier.
+
+Often when you set the domain, you'll want to use the minimum and maximum values within the data set. Trying to find these values manually, especially in a large data set, may cause errors.
+
+D3 has two methods - min() and max() to return this information. Here's an example:
+
+**Example:**
+
+```Javascript 
+const exampleData = [34, 234, 73, 90, 6, 52];
+d3.min(exampleData)
+d3.max(exampleData)
+
+```
+
+A dataset may have nested arrays, like the [x, y] coordinate pairs that were in the scatter plot example. In that case, you need to tell D3 how to calculate the maximum and minimum. Fortunately, both the min() and max() methods take a callback function. In this example, the callback function's argument d is for the current inner array. The callback needs to return the element from the inner array (the x or y value) over which you want to compute the maximum or minimum. Here's an example for how to find the min and max values with an array of arrays:
+
+**Example:**
+
+```Javascript 
+
+const locationData = [[1, 7],[6, 3],[8, 3]];
+const minX = d3.min(locationData, (d) => d[0]);
+
+```
+`minX` would have the value `1`.
+
+**Challenge Instructions:**
+
+
+The `positionData` array holds sub arrays of x, y, and z coordinates. Use a D3 method to find the maximum value of the z coordinate (the third value) from the arrays and save it in the `output` variable.
+
+**My Solution:**
+
+```Javascript 
+<body>
+  <script>
+    const positionData = [[1, 7, -4],[6, 3, 8],[2, 9, 3]]
+    // Add your code below this line
+
+
+const output = d3.max(positionData, (d) => d[2]);
+
+
+    // Add your code above this line
+
+    d3.select("body")
+      .append("h2")
+      .text(output)
+  </script>
+</body>
+```
+
+## Use Dynamic Scales
+
+**The Lesson:**
+
+The D3 min() and max() methods are useful to help set the scale.
+
+Given a complex data set, one priority is to set the scale so the visualization fits the SVG container's width and height. You want all the data plotted inside the SVG so it's visible on the web page.
+
+The example below sets the x-axis scale for scatter plot data. The domain() method passes information to the scale about the raw data values for the plot. The range() method gives it information about the actual space on the web page for the visualization.
+
+In the example, the domain goes from 0 to the maximum in the set. It uses the max() method with a callback function based on the x values in the arrays. The range uses the SVG's width (w), but it includes some padding, too. This puts space between the scatter plot dots and the edge of the SVG.
+
+**Example:**
+
+```Javascript 
+const dataset = [
+  [ 34,    78 ],
+  [ 109,   280 ],
+  [ 310,   120 ],
+  [ 79,    411 ],
+  [ 420,   220 ],
+  [ 233,   145 ],
+  [ 333,   96 ],
+  [ 222,   333 ],
+  [ 78,    320 ],
+  [ 21,    123 ]
+];
+const w = 500;
+const h = 500;
+
+const padding = 30;
+const xScale = d3.scaleLinear()
+  .domain([0, d3.max(dataset, (d) => d[0])])
+  .range([padding, w - padding]);
+  
+```
+The padding may be confusing at first. Picture the x-axis as a horizontal line from 0 to 500 (the width value for the SVG). Including the padding in the `range()` method forces the plot to start at 30 along that line (instead of 0), and end at 470 (instead of 500).
+
+**Challenge Instructions:**
+
+Use the `yScale` variable to create a linear y-axis scale. The domain should start at zero and go to the maximum `y` value in the set. The range should use the SVG height (`h`) and include padding.
+
+Note: Remember to keep the plot right-side-up. When you set the range for the y coordinates, the higher value (height minus padding) is the first argument, and the lower value is the second argument.
+
+
+
+**My Solution:**
+
+```Javascript 
+
+<body>
+  <script>
+    const dataset = [
+                  [ 34,    78 ],
+                  [ 109,   280 ],
+                  [ 310,   120 ],
+                  [ 79,    411 ],
+                  [ 420,   220 ],
+                  [ 233,   145 ],
+                  [ 333,   96 ],
+                  [ 222,   333 ],
+                  [ 78,    320 ],
+                  [ 21,    123 ]
+                ];
+
+    const w = 500;
+    const h = 500;
+
+    // Padding between the SVG boundary and the plot
+    const padding = 30;
+
+    // Create an x and y scale
+
+   
+
+    const xScale = d3.scaleLinear()
+                    .domain([0, d3.max(dataset, (d) => d[0])])
+                    .range([padding, w - padding]);
+
+    // Add your code below this line
+
+    
+   const yScale = d3.scaleLinear()
+  .domain([0, d3.max(dataset, (d)=>d[1])])
+  .range([ w - padding, padding]);
+
+    // Add your code above this line
+
+    const output = yScale(411); // Returns 30
+    d3.select("body")
+      .append("h2")
+      .text(output)
+  </script>
+</body>
+```
+
+
+## Use a Pre-Defined Scale to Place Elements
 
 **The Lesson:**
 
