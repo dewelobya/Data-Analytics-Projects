@@ -511,13 +511,13 @@ Add an svg node to the body using `append()`. Give it a width attribute set to t
 
 The last challenge created an svg element with a given width and height, which was visible because it had a background-color applied to it in the style tag. The code made space for the given width and height.
 
-The next step is to create a shape to put in the svg area. There are a number of supported shapes in SVG, such as rectangles and circles. They are used to display data. For example, a rectangle (<rect>) SVG shape could create a bar in a bar chart.
+The next step is to create a shape to put in the svg area. There are a number of supported shapes in SVG, such as rectangles and circles. They are used to display data. For example, a rectangle (`<rect>`) SVG shape could create a bar in a bar chart.
 
-When you place a shape into the svg area, you can specify where it goes with x and y coordinates. The origin point of (0, 0) is in the upper-left corner. Positive values for x push the shape to the right, and positive values for y push the shape down from the origin point.
+When you place a shape into the svg area, you can specify where it goes with `x` and `y` coordinates. The origin point of (`0, 0`) is in the upper-left corner. Positive values for `x` push the shape to the right, and positive values for `y` push the shape down from the origin point.
 
-To place a shape in the middle of the 500 (width) x 100 (height) svg from last challenge, the x coordinate would be 250 and the y coordinate would be 50.
+To place a shape in the middle of the 500 (width) x 100 (height) `svg` from last challenge, the `x` coordinate would be `250` and the `y` coordinate would be `50`.
 
-An SVG rect has four attributes. There are the x and y coordinates for where it is placed in the svg area. It also has a height and width to specify the size.
+An SVG `rect` has four attributes. There are the `x` and `y` coordinates for where it is placed in the svg area. It also has a `height` and `width` to specify the size.
 
 **Example:**
 
@@ -532,8 +532,321 @@ Add a rect shape to the svg using `append()`, and give it a `width` attribute of
 **My Solution:**
 
 ```Javascript 
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    const w = 500;
+    const h = 100;
+
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h)
+                  // Add your code below this line
+                  .append("rect")
+                  .attr("width", 25)
+                  .attr("height", 100)
+                  .attr("x", 0)
+                  .attr("y",0);
+
+
+                  // Add your code above this line
+  </script>
+</body>
+```
+
+
+## Create a Bar for Each Data Point in the Set
+
+**The Lesson:**
+
+The last challenge added only one rectangle to the `svg` element to represent a bar. Here, you'll combine what you've learned so far about `data()`, `enter()`, and SVG shapes to create and append a rectangle for each data point in `dataset`.
+
+A previous challenge showed the format for how to create and append a `div` for each item in `dataset`:
+
+
+**Example:**
+
+```Javascript 
+
+d3.select("body").selectAll("div")
+  .data(dataset)
+  .enter()
+  .append("div")
+  
+```
+
+There are a few differences working with `rect` elements instead of `div` elements. The `rect` elements must be appended to an `svg` element, not directly to the `body`. Also, you need to tell D3 where to place each `rect` within the `svg` area. The bar placement will be covered in the next challenge.
+
+**Challenge Instructions:**
+
+Use the `data()`, `enter()`, and `append()` methods to create and append a rect for each item in dataset. The bars should display all on top of each other; this will be fixed in the next challenge.
+
+**My Solution:**
+
+```Javascript 
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    const w = 500;
+    const h = 100;
+
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+
+    svg.selectAll("rect")
+       // Add your code below this line
+
+d3.select("body").selectAll("div")
+  .data(dataset)
+  .enter()
+  .append("rect")
+
+       // Add your code above this line
+       .attr("x", 0)
+       .attr("y", 0)
+       .attr("width", 25)
+       .attr("height", 100);
+  </script>
+</body>
 
 ```
+
+## Dynamically Set the Coordinates for Each Bar 
+
+**The Lesson:**
+
+The last challenge created and appended a rectangle to the `svg` element for each point in `dataset` to represent a bar. Unfortunately, they were all stacked on top of each other.
+
+The placement of a rectangle is handled by the `x` and `y` attributes. They tell D3 where to start drawing the shape in the `svg` area. The last challenge set them each to 0, so every bar was placed in the upper-left corner.
+
+For a bar chart, all of the bars should sit on the same vertical level, which means the `y` value stays the same (at 0) for all bars. The `x` value, however, needs to change as you add new bars. Remember that larger `x` values push items farther to the right. As you go through the array elements in `dataset`, the `x` value should increase.
+
+The `attr()` method in D3 accepts a callback function to dynamically set that attribute. The callback function takes two arguments, one for the data point itself (usually `d`) and one for the index of the data point in the array. The second argument for the index is optional. Here's the format:
+
+
+
+**Example:**
+
+```Javascript 
+selection.attr("property", (d, i) => { })
+
+
+```
+
+It's important to note that you do NOT need to write a `for` loop or use `forEach()` to iterate over the items in the data set. Recall that the `data()` method parses the data set, and any method that's chained after `data()` is run once for each item in the data set.
+
+**Challenge Instructions:**
+
+Change the `x` attribute callback function so it returns the index times 30.
+
+Note: Each bar has a width of 25, so increasing each `x` value by 30 adds some space between the bars. Any value greater than 25 would work in this example.
+
+**My Solution:**
+
+```Javascript 
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    const w = 500;
+    const h = 100;
+
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+
+    svg.selectAll("rect")
+       .data(dataset)
+       .enter()
+       .append("rect")
+       .attr("x", (d, i) => {
+         // Add your code below this line
+
+return i*30;
+
+
+         // Add your code above this line
+       })
+       .attr("y", 0)
+       .attr("width", 25)
+       .attr("height", 100);
+  </script>
+</body>
+
+```
+## Dynamically Change the Height of Each Bar
+
+**The Lesson:**
+
+The height of each bar can be set to the value of the data point in the array, similar to how the `x` value was set dynamically.
+
+**Example:**
+
+```Javascript 
+selection.attr("property", (d, i) => {})
+
+```
+Here `d` would be the data point value, and `i` would be the index of the data point in the array.
+
+**Challenge Instructions:**
+
+Change the callback function for the `height` attribute to return the data value times 3.
+
+**Note:** Remember that multiplying all data points by the same constant scales the data (like zooming in). It helps to see the differences between bar values in this example.
+
+**My Solution:**
+
+```Javascript 
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    const w = 500;
+    const h = 100;
+
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+
+    svg.selectAll("rect")
+       .data(dataset)
+       .enter()
+       .append("rect")
+       .attr("x", (d, i) => i * 30)
+       .attr("y", 0)
+       .attr("width", 25)
+       .attr("height", (d, i) => {
+         // Add your code below this line
+
+return d*3;
+
+         // Add your code above this line
+       });
+  </script>
+</body>
+```
+## Invert SVG Elements
+
+**The Lesson:**
+
+You may have noticed the bar chart looked like it's upside-down, or inverted. This is because of how SVG uses (x, y) coordinates.
+
+In SVG, the origin point for the coordinates is in the upper-left corner. An x coordinate of 0 places a shape on the left edge of the SVG area. A y coordinate of 0 places a shape on the top edge of the SVG area. Higher x values push the rectangle to the right. Higher y values push the rectangle down.
+
+To make the bars right-side-up, you need to change the way the y coordinate is calculated. It needs to account for both the height of the bar and the total height of the SVG area.
+
+The height of the SVG area is 100. If you have a data point of 0 in the set, you would want the bar to start at the bottom of the SVG area (not the top). To do this, the y coordinate needs a value of 100. If the data point value were 1, you would start with a y coordinate of 100 to set the bar at the bottom. Then you need to account for the height of the bar of 1, so the final y coordinate would be 99.
+
+The y coordinate that is `y = heightOfSVG - heightOfBar` would place the bars right-side-up.
+
+
+
+**Example:**
+
+```Javascript 
+
+```
+
+**Challenge Instructions:**
+
+Change the callback function for the y attribute to set the bars right-side-up. Remember that the height of the bar is 3 times the data value d.
+
+Note: In general, the relationship is `y = h - m * d`, where `m` is the constant that scales the data points.
+
+**My Solution:**
+
+```Javascript 
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    const w = 500;
+    const h = 100;
+
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+
+    svg.selectAll("rect")
+       .data(dataset)
+       .enter()
+       .append("rect")
+       .attr("x", (d, i) => i * 30)
+       .attr("y", (d, i) => {
+         // Add your code below this line
+return h-d*3;
+
+
+         // Add your code above this line
+       })
+       .attr("width", 25)
+       .attr("height", (d, i) => 3 * d);
+  </script>
+</body>
+```
+
+## Change the Color of an SVG Element
+
+**The Lesson:**
+
+The bars are in the right position, but they are all the same black color. SVG has a way to change the color of the bars.
+
+In SVG, a `rect` shape is colored with the `fill` attribute. It supports hex codes, color names, and rgb values, as well as more complex options like gradients and transparency.
+
+
+
+**Example:**
+
+```Javascript 
+
+```
+
+**Challenge Instructions:**
+
+Add an `attr()` method to set the fill of all the bars to the color navy.
+
+**My Solution:**
+```Javascript 
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    const w = 500;
+    const h = 100;
+
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+
+    svg.selectAll("rect")
+       .data(dataset)
+       .enter()
+       .append("rect")
+       .attr("x", (d, i) => i * 30)
+       .attr("y", (d, i) => h - 3 * d)
+       .attr("width", 25)
+       .attr("height", (d, i) => 3 * d)
+       // Add your code below this line
+ .attr("fill","navy"); 
+ 
+
+       // Add your code above this line
+  </script>
+</body>
+
+```
+
+<img width="270" alt="Screenshot 2023-04-26 at 22 07 18" src="https://user-images.githubusercontent.com/19546253/234677882-98500745-74b1-4431-bb91-4229800cbbb3.png">
+
 
 ------
 
@@ -549,6 +862,7 @@ Copy below text as base for each lesson:
 ```Javascript 
 
 ```
+
 
 **Challenge Instructions:**
 
