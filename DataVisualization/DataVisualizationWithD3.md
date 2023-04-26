@@ -204,7 +204,175 @@ Change the `text()` method so that each `h2` element displays the corresponding 
 ```
 
 
---------
+## Add Inline Styling to Elements
+
+**The Lesson:**
+
+D3 lets you add inline CSS styles on dynamic elements with the style() method.
+
+The `style()` method takes a comma-separated key-value pair as an argument. Here's an example to set the selection's text color to blue:
+
+**Example:**
+
+```Javascript 
+selection.style("color","blue");
+```
+
+**Challenge Instructions:**
+
+
+Add the `style()` method to the code in the editor to make all the displayed text have a `font-family` of `verdana`.
+
+**My Solution:**
+
+```Javascript 
+
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    d3.select("body").selectAll("h2")
+      .data(dataset)
+      .enter()
+      .append("h2")
+      .text((d) => (d + " USD"))
+      // Add your code below this line
+
+.style("font-family", "verdana");
+
+      // Add your code above this line
+  </script>
+</body>
+```
+
+## Change Styles Based on Data 
+
+**The Lesson:**
+
+D3 is about visualization and presentation of data. It's likely you'll want to change the styling of elements based on the data. For example, you may want to color a data point blue if it has a value less than 20, and red otherwise. You can use a callback function in the `style()` method and include the conditional logic. The callback function uses the d parameter to represent the data point:
+
+**Example:**
+
+```Javascript 
+selection.style("color", (d) => { });
+```
+
+The `style()` method is not limited to setting the color - it can be used with other CSS properties as well.
+
+
+**Challenge Instructions:**
+
+Add the `style()` method to the code in the editor to set the `color` of the `h2` elements conditionally. Write the callback function so if the data value is less than 20, it returns red, otherwise it returns green.
+
+Note: You can use if-else logic, or the ternary operator.
+
+**My Solution first attempt:**
+
+```Javascript 
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    d3.select("body").selectAll("h2")
+      .data(dataset)
+      .enter()
+      .append("h2")
+      .text((d) => (d + " USD"))
+      // Add your code below this line
+if h2 <20
+.style("color", "red");
+else 
+.style("color","blue");
+
+      // Add your code above this line
+  </script>
+</body>
+```
+
+**My Solution second attempt (the correct solution):**
+
+```Javascript 
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    d3.select("body").selectAll("h2")
+      .data(dataset)
+      .enter()
+      .append("h2")
+      .text((d) => (d + " USD"))
+      // Add your code below this line
+      .style("color", d => d < 20 ? "red" : "green");  
+
+      // Add your code above this line
+  </script>
+</body>
+
+```
+
+Resource: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator
+
+
+## Add Classes with D3 
+
+**The Lesson:**
+
+Using a lot of inline styles on HTML elements gets hard to manage, even for smaller apps. It's easier to add a class to elements and style that class one time using CSS rules. D3 has the `attr()` method to add any HTML attribute to an element, including a class name.
+
+The `attr()` method works the same way that `style()` does. It takes comma-separated values, and can use a callback function. Here's an example to add a class of `container` to a selection:
+
+
+
+**Example:**
+
+```Javascript 
+selection.attr("class", "container");
+
+```
+
+Note that the `class` parameter will remain the same whenever you need to add a class and only the `container` parameter will change.
+**Challenge Instructions:**
+
+
+
+Add the attr() method to the code in the editor and put a class of bar on the div elements.
+
+**My Solution:**
+
+```Javascript 
+<style>
+  .bar {
+    width: 25px;
+    height: 100px;
+    display: inline-block;
+    background-color: blue;
+  }
+</style>
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    d3.select("body").selectAll("div")
+      .data(dataset)
+      .enter()
+      .append("div")
+      // Add your code below this line
+      
+      
+    .attr("class", "bar")
+
+
+      // Add your code above this line
+  </script>
+</body>
+
+```
+
+
+
+Copy below text as base for each lesson: 
+
+
 ## Add Document Elements with D3
 
 **The Lesson:**
