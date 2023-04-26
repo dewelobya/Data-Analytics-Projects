@@ -358,17 +358,99 @@ Add the attr() method to the code in the editor and put a class of bar on the di
       .append("div")
       // Add your code below this line
       
-      
     .attr("class", "bar")
-
 
       // Add your code above this line
   </script>
 </body>
 
 ```
+## Update the Height of an Element Dynamically
+
+**The Lesson:**
+
+The previous challenges covered how to display data from an array and how to add CSS classes. You can combine these lessons to create a simple bar chart. There are two steps to this:
+
+1. Create a `div` for each data point in the array
+
+1. Give each `div` a dynamic height, using a callback function in the `style()` method that sets height equal to the data value
+
+Recall the format to set a style using a callback function:
+
+**Example:**
+
+```Javascript 
+selection.style("cssProperty", (d) => d)
+```
+
+**Challenge Instructions:**
+
+Add the `style()` method to the code in the editor to set the `height` property for each element. Use a callback function to return the value of the data point with the string `px` added to it.
+
+**My Solution:**
+
+```Javascript 
+.style("height", (d) => d + 'px')
+
+```
 
 
+## Change the Presentation of a Bar Chart 
+
+**The Lesson:**
+
+The last challenge created a bar chart, but there are a couple of formatting changes that could improve it:
+
+1. Add space between each `bar` to visually separate them, which is done by adding a margin to the CSS for the bar class
+
+1. Increase the height of the bars to better show the difference in values, which is done by multiplying the value by a number to scale the height
+
+
+**Example:**
+
+```Javascript 
+No example for this exercise
+```
+
+**Challenge Instructions:**
+
+First, add a `margin` of `2px` to the bar class in the `style` tag. Next, change the callback function in the `style()` method so it returns a value `10` times the original data value (plus the `px`).
+
+Note: Multiplying each data point by the same constant only alters the scale. It's like zooming in, and it doesn't change the meaning of the underlying data.
+
+**My Solution:**
+
+```Javascript 
+<style>
+  .bar {
+    width: 25px;
+    height: 100px;
+    /* Add your code below this line */
+    margin: 2px;
+
+    
+    /* Add your code above this line */
+    display: inline-block;
+    background-color: blue;
+  }
+</style>
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    d3.select("body").selectAll("div")
+      .data(dataset)
+      .enter()
+      .append("div")
+      .attr("class", "bar")
+      .style("height", (d) => (d*10 + "px")) // Change this line
+  </script>
+</body>
+
+```
+
+
+------
 
 Copy below text as base for each lesson: 
 
