@@ -1653,6 +1653,27 @@ Note: Remember to keep the plot right-side-up. When you set the range for the y 
 
 ```
 
+
+## Add Axes to a Visualization ##
+
+**The Lesson:**
+
+**Example:**
+
+```Javascript 
+
+```
+
+
+**Challenge Instructions:**
+
+**My Solution:**
+
+```Javascript 
+
+```
+
+
 ------
 
 Copy below text as base for each lesson: 
