@@ -43,8 +43,8 @@ Scraping Dynamic Websites
 
 
 <details id=5>
-<summary><h2>  Data visualization</h2></summary>
-1. My Github recent [posts](https://github.com/pe1l1nl1/pe1l1nl1/tree/main/_posts)
+<summary><h2> Data visualization</h2></summary>
+1. Data Visualization with D3, JSON, APIs and AJAX [Projects](https://github.com/pe1l1nl1/Data-Analytics-Projects/tree/main/DataVisualization)
 
 </details>
 
