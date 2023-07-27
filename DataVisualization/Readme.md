@@ -1,6 +1,6 @@
 ## Add Document Elements with D3 ##
 
-**Tools used: **HTML, CSS, SVG, JSON, APIs and AJAX
+**Tools used** HTML, CSS, SVG, JSON, APIs and AJAX
 
 1. [Visualize Data with a Bar Chart](https://codepen.io/peill/pen/XWyNbbq)
 2. [Visualize Data with a Scatterplot Graph](https://codepen.io/peill/pen/OJaBraW)
