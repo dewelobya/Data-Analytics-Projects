@@ -52,7 +52,7 @@ Data Visualization projects [repository](https://github.com/pe1l1nl1/Data-Analyt
 3. [Visualize Data with a Heat Map](https://codepen.io/peill/pen/BaGqvvW)
 4. [Visualize Data with a Choropleth](https://codepen.io/peill/pen/RwqeEda)
 5. [Visualize Data with a Treemap Diagram](https://codepen.io/pen?template=MJjpwO)
- **Tools used:** HTML, CSS, SVG, JSON, APIs and AJAX
+6. **Tools used:** HTML, CSS, SVG, JSON, APIs and AJAX
 
 </details>
 
